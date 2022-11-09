@@ -6,29 +6,27 @@ import com.projectigti.irontime.data.db.model.SubscriberEntity
 class DataBaseDataSource(
     private val subscriberDAO: SubscriberDAO
 ): SubscriberRepository {
-    override suspend fun insertSubscriber(name: String, email: String): Long {
+    override suspend fun insertSubscriber(name: String, email: String, phone: String): Long {
         val subscriber = SubscriberEntity(
             name = name,
-            email = email
+            email = email,
+            phone = phone
         )
         return subscriberDAO.insert(subscriber)
     }
 
-    override suspend fun updateSubscriber(id: Long, name: String, email: String) {
+    override suspend fun updateSubscriber(id: Long, name: String, email: String, phone: String) {
         val subscriber = SubscriberEntity(
             id = id,
             name = name,
-            email = email
+            email = email,
+            phone = phone
         )
         subscriberDAO.update(subscriber)
     }
 
     override suspend fun deleteSubscriber(id: Long) {
         subscriberDAO.delete(id)
-    }
-
-    override suspend fun deleteAllSubscribers() {
-        subscriberDAO.deleteAll()
     }
 
     override suspend fun getAllSubscribers(): List<SubscriberEntity> {

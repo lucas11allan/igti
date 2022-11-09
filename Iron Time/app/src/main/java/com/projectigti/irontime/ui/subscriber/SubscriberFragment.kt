@@ -58,6 +58,7 @@ class SubscriberFragment : Fragment(R.layout.fragment_subscriber) {
             binding.buttonSubscriber.text = getString(R.string.button_update)
             binding.inputName.setText(subscriber.name.toString())
             binding.inputEmail.setText(subscriber.email.toString())
+            binding.inputPhone.setText(subscriber.email.toString())
 
             binding.buttonDeleteSubscriber.visibility = View.VISIBLE
         }
@@ -69,8 +70,9 @@ class SubscriberFragment : Fragment(R.layout.fragment_subscriber) {
         binding.buttonSubscriber.setOnClickListener {
             val name = binding.inputName.text.toString()
             val email = binding.inputEmail.text.toString()
+            val phone = binding.inputPhone.text.toString()
 
-            viewModel.addOrUpdateSubscriber(name, email, args.subscriber?.id ?: 0)
+            viewModel.addOrUpdateSubscriber(name, email, phone, args.subscriber?.id ?: 0)
         }
 
         binding.buttonDeleteSubscriber.setOnClickListener {
