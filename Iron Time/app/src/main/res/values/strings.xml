@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Iron Time</string>
+    <string name="subscriber_email_hint">Email</string>
+    <string name="subscriber_name_hint">Subscriber\'s name</string>
+    <string name="add_button">Add</string>
+    <string name="subscriber_screen">Subscriber</string>
+    <string name="inserted_succesfully">Subscribed inserted succesfuly</string>
+    <string name="error">An error has occurred</string>
+    <string name="button_update">Update Subscriber</string>
+    <string name="updated_successfully">Subscriber updated successfully</string>
+    <string name="delete_successfully">Subscriber deleted successfully</string>
+</resources>
