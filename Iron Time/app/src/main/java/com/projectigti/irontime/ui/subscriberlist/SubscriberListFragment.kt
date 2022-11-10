@@ -75,25 +75,13 @@ class SubscriberListFragment : Fragment(R.layout.fragment_subscriber_list) {
         }
     }
 
-    private fun clearFields() {
-        /*binding.inputName.text?.clear()
-        binding.inputEmail.text?.clear()*/
-    }
-
-    private fun hideKeyBoard() {
-        val parentActivity = requireActivity()
-        if (parentActivity is AppCompatActivity) {
-            parentActivity.hideKeyBoard()
-        }
-    }
-
     private fun observeViewModelEvents() {
 
         viewModel.allSubscribersEvent.observe(viewLifecycleOwner, Observer { list ->
             val subscriberListAdapter = SubscriberListAdapter(list).apply {
                 onItemClick = { subscriber ->
                     val directions = SubscriberListFragmentDirections
-                        .actionSubscriberListFragmentToSubscriberFragment(subscriber)
+                        .actionSubscriberListFragmentToSubscriberDetailFragment(subscriber)
                     findNavController().navigateWithAnimations(directions)
                 }
 
@@ -118,8 +106,9 @@ class SubscriberListFragment : Fragment(R.layout.fragment_subscriber_list) {
 
     private fun configureViewListener() {
         binding.fabAddSubscriber.setOnClickListener {
-            findNavController().navigateWithAnimations(R.id.action_subscriberListFragment_to_subscriberFragment)
-        }
+            val directions = SubscriberListFragmentDirections
+                .actionSubscriberListFragmentToSubscriberFragment()
+            findNavController().navigateWithAnimations(directions)}
     }
 
 

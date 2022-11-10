@@ -11,6 +11,9 @@
         android:label="Iron Time"
         tools:layout="@layout/fragment_subscriber_list" >
         <action
+            android:id="@+id/action_subscriberListFragment_to_subscriberDetailFragment"
+            app:destination="@id/subscriberDetailFragment" />
+        <action
             android:id="@+id/action_subscriberListFragment_to_subscriberFragment"
             app:destination="@id/subscriberFragment" />
     </fragment>
@@ -25,6 +28,21 @@
             app:argType="com.projectigti.irontime.data.db.model.SubscriberEntity"
             android:defaultValue="@null"
             app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/subscriberDetailFragment"
+        android:name="com.projectigti.irontime.ui.subscriberdetail.SubscriberDetailFragment"
+        android:label="Student Details"
+        tools:layout="@layout/fragment_subscriber_detail" >
+        <argument
+            android:name="subscriber"
+            app:argType="com.projectigti.irontime.data.db.model.SubscriberEntity"
+            android:defaultValue="@null"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_subscriberDetailFragment_to_subscriberFragment"
+            app:destination="@id/subscriberFragment" />
     </fragment>
 
 </navigation>
