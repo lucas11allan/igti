@@ -67,10 +67,24 @@ class SubscriberViewModel(
         }
     }
 
+    fun doCheckin(id: Long) = viewModelScope.launch {
+        try {
+            if (id > 0) {
+                repository.doCheckin(id)
+                _subscriberStateEventData.value = SubscriberState.Checkin
+                _messageEventData.value = R.string.checkin_ok
+            }
+        } catch (ex: Exception) {
+            _messageEventData.value = R.string.error
+            Log.e(TAG, ex.toString())
+        }
+    }
+
     sealed class SubscriberState {
         object Inserted : SubscriberState()
         object Updated : SubscriberState()
         object Deleted : SubscriberState()
+        object Checkin : SubscriberState()
     }
 
     companion object {

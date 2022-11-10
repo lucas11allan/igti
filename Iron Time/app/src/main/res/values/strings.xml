@@ -9,4 +9,5 @@
     <string name="button_update">Update Subscriber</string>
     <string name="updated_successfully">Subscriber updated successfully</string>
     <string name="delete_successfully">Subscriber deleted successfully</string>
+    <string name="checkin_ok">Checkin successfully</string>
 </resources>

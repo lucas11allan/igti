@@ -19,4 +19,7 @@ interface SubscriberDAO {
 
     @Query("SELECT * FROM students")
     suspend fun getAll(): List<SubscriberEntity>
+
+    @Query("UPDATE students SET classes = classes - 1 WHERE id = :id")
+    suspend fun doCheckin(id: Long)
 }

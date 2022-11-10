@@ -32,4 +32,8 @@ class DataBaseDataSource(
     override suspend fun getAllSubscribers(): List<SubscriberEntity> {
         return subscriberDAO.getAll()
     }
+
+    override suspend fun doCheckin(id: Long) {
+        subscriberDAO.doCheckin(id)
+    }
 }

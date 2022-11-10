@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -15,9 +16,11 @@ import com.projectigti.irontime.R
 import com.projectigti.irontime.data.db.AppDatabase
 import com.projectigti.irontime.data.db.dao.SubscriberDAO
 import com.projectigti.irontime.databinding.FragmentSubscriberListBinding
+import com.projectigti.irontime.extension.hideKeyBoard
 import com.projectigti.irontime.extension.navigateWithAnimations
 import com.projectigti.irontime.repository.DataBaseDataSource
 import com.projectigti.irontime.repository.SubscriberRepository
+import com.projectigti.irontime.ui.subscriber.SubscriberViewModel
 
 class SubscriberListFragment : Fragment(R.layout.fragment_subscriber_list) {
 
@@ -53,8 +56,35 @@ class SubscriberListFragment : Fragment(R.layout.fragment_subscriber_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        observerEvents()
         observeViewModelEvents()
         configureViewListener()
+    }
+
+    private fun observerEvents() {
+        viewModel.subscriberListStateEventData.observe(viewLifecycleOwner) { subscriberState ->
+            when (subscriberState) {
+                is SubscriberListViewModel.SubscriberListState.Checkin -> {
+                    viewModel.getSubscribers()
+                }
+            }
+        }
+
+        viewModel.messageEventData.observe(viewLifecycleOwner) { stringResId ->
+            Snackbar.make(requireView(), stringResId, Snackbar.LENGTH_LONG).show()
+        }
+    }
+
+    private fun clearFields() {
+        /*binding.inputName.text?.clear()
+        binding.inputEmail.text?.clear()*/
+    }
+
+    private fun hideKeyBoard() {
+        val parentActivity = requireActivity()
+        if (parentActivity is AppCompatActivity) {
+            parentActivity.hideKeyBoard()
+        }
     }
 
     private fun observeViewModelEvents() {
@@ -68,7 +98,7 @@ class SubscriberListFragment : Fragment(R.layout.fragment_subscriber_list) {
                 }
 
                 onCheckinButtonClick = { subscriber ->
-                    Snackbar.make(requireView(), subscriber.name, Snackbar.LENGTH_LONG).show()
+                    viewModel.doCheckin(subscriber.id)
                 }
 
 

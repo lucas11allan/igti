@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/subscriberFragment"
         android:name="com.projectigti.irontime.ui.subscriber.SubscriberFragment"
-        android:label="@string/subscriber_screen"
+        android:label="Student"
         tools:layout="@layout/fragment_subscriber" >
         <argument
             android:name="subscriber"

@@ -31,7 +31,8 @@ class SubscriberListAdapter(
         fun bind(item: SubscriberEntity) {
             binding.apply {
                 textSubscriberName.text = item.name
-                textSubscriberEmail.text = item.email
+                textSubscriberEmail.text = item.classes.toString()
+
 
                 buttonCheckin.setOnClickListener {
                     onCheckinButtonClick?.invoke(item)

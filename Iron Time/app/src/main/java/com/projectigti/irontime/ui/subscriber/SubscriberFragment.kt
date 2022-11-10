@@ -85,7 +85,8 @@ class SubscriberFragment : Fragment(R.layout.fragment_subscriber) {
             when (subscriberState) {
                 is SubscriberViewModel.SubscriberState.Inserted,
                 is SubscriberViewModel.SubscriberState.Updated,
-                is SubscriberViewModel.SubscriberState.Deleted -> {
+                is SubscriberViewModel.SubscriberState.Deleted,
+                is SubscriberViewModel.SubscriberState.Checkin -> {
                     clearFields()
                     hideKeyBoard()
                     requireView().requestFocus()

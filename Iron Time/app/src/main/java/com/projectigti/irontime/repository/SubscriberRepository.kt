@@ -11,4 +11,6 @@ interface SubscriberRepository {
     suspend fun deleteSubscriber(id: Long)
 
     suspend fun getAllSubscribers(): List<SubscriberEntity>
+
+    suspend fun doCheckin(id: Long)
 }
