@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.projectigti.irontime.R
 import com.projectigti.irontime.repository.SubscriberRepository
 import kotlinx.coroutines.launch
+import java.util.Date
 
 class SubscriberViewModel(
     private val repository: SubscriberRepository
@@ -60,19 +61,6 @@ class SubscriberViewModel(
                 repository.deleteSubscriber(id)
                 _subscriberStateEventData.value = SubscriberState.Deleted
                 _messageEventData.value = R.string.delete_successfully
-            }
-        } catch (ex: Exception) {
-            _messageEventData.value = R.string.error
-            Log.e(TAG, ex.toString())
-        }
-    }
-
-    fun doCheckin(id: Long) = viewModelScope.launch {
-        try {
-            if (id > 0) {
-                repository.doCheckin(id)
-                _subscriberStateEventData.value = SubscriberState.Checkin
-                _messageEventData.value = R.string.checkin_ok
             }
         } catch (ex: Exception) {
             _messageEventData.value = R.string.error

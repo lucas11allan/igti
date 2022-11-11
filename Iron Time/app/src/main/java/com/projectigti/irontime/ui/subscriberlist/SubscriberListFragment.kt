@@ -21,6 +21,7 @@ import com.projectigti.irontime.extension.navigateWithAnimations
 import com.projectigti.irontime.repository.DataBaseDataSource
 import com.projectigti.irontime.repository.SubscriberRepository
 import com.projectigti.irontime.ui.subscriber.SubscriberViewModel
+import java.util.*
 
 class SubscriberListFragment : Fragment(R.layout.fragment_subscriber_list) {
 
@@ -86,10 +87,13 @@ class SubscriberListFragment : Fragment(R.layout.fragment_subscriber_list) {
                 }
 
                 onCheckinButtonClick = { subscriber ->
-                    viewModel.doCheckin(subscriber.id)
+                    var listCheckin = subscriber.checkins?.toMutableList()
+                    listCheckin?.add(Calendar.getInstance().time)
+
+                    if(listCheckin != null) {
+                        viewModel.doCheckin(listCheckin, subscriber.id)
+                    }
                 }
-
-
             }
 
             binding.recyclerSubscriber.run {

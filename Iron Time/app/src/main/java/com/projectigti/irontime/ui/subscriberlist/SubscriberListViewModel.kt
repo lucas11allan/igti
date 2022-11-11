@@ -10,6 +10,7 @@ import com.projectigti.irontime.data.db.model.SubscriberEntity
 import com.projectigti.irontime.repository.SubscriberRepository
 import com.projectigti.irontime.ui.subscriber.SubscriberViewModel
 import kotlinx.coroutines.launch
+import java.util.Date
 
 class SubscriberListViewModel(
     private val repository: SubscriberRepository
@@ -30,10 +31,10 @@ class SubscriberListViewModel(
         _allSubscribersEvent.postValue(repository.getAllSubscribers())
     }
 
-    fun doCheckin(id: Long) = viewModelScope.launch {
+    fun doCheckin(list: List<Date>, id: Long) = viewModelScope.launch {
         try {
             if (id > 0) {
-                repository.doCheckin(id)
+                repository.doCheckin(list, id)
                 _subscriberListStateEventData.value = SubscriberListState.Checkin
                 _messageEventData.value = R.string.checkin_ok
             }

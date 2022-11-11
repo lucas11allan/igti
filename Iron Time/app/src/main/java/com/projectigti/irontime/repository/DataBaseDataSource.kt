@@ -2,6 +2,7 @@ package com.projectigti.irontime.repository
 
 import com.projectigti.irontime.data.db.dao.SubscriberDAO
 import com.projectigti.irontime.data.db.model.SubscriberEntity
+import java.util.Date
 
 class DataBaseDataSource(
     private val subscriberDAO: SubscriberDAO
@@ -33,7 +34,7 @@ class DataBaseDataSource(
         return subscriberDAO.getAll()
     }
 
-    override suspend fun doCheckin(id: Long) {
-        subscriberDAO.doCheckin(id)
+    override suspend fun doCheckin(list: List<Date>, id: Long) {
+        subscriberDAO.doCheckin(list, id)
     }
 }

@@ -1,6 +1,7 @@
 package com.projectigti.irontime.ui.subscriberdetail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,7 +56,7 @@ class SubscriberDetailFragment : Fragment(R.layout.fragment_subscriber_detail) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        Log.e("lista", args.subscriber?.checkins.toString() )
         configureViewListener()
     }
 
