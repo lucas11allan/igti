@@ -90,7 +90,7 @@ class SubscriberListFragment : Fragment(R.layout.fragment_subscriber_list) {
                     var listCheckin = subscriber.checkins?.toMutableList()
                     listCheckin?.add(Calendar.getInstance().time)
 
-                    if(listCheckin != null) {
+                    if (listCheckin != null) {
                         viewModel.doCheckin(listCheckin, subscriber.id)
                     }
                 }
@@ -112,7 +112,8 @@ class SubscriberListFragment : Fragment(R.layout.fragment_subscriber_list) {
         binding.fabAddSubscriber.setOnClickListener {
             val directions = SubscriberListFragmentDirections
                 .actionSubscriberListFragmentToSubscriberFragment()
-            findNavController().navigateWithAnimations(directions)}
+            findNavController().navigateWithAnimations(directions)
+        }
     }
 
 

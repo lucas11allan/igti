@@ -18,7 +18,9 @@ import com.projectigti.irontime.databinding.FragmentSubscriberDetailBinding
 import com.projectigti.irontime.extension.navigateWithAnimations
 import com.projectigti.irontime.repository.DataBaseDataSource
 import com.projectigti.irontime.repository.SubscriberRepository
+import com.projectigti.irontime.ui.subscriberlist.SubscriberListAdapter
 import com.projectigti.irontime.ui.subscriberlist.SubscriberListFragmentDirections
+import java.util.*
 
 class SubscriberDetailFragment : Fragment(R.layout.fragment_subscriber_detail) {
 
@@ -56,8 +58,21 @@ class SubscriberDetailFragment : Fragment(R.layout.fragment_subscriber_detail) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.e("lista", args.subscriber?.checkins.toString() )
         configureViewListener()
+        observeViewModelEvents()
+    }
+
+    private fun observeViewModelEvents() {
+        val checkins = args.subscriber?.checkins
+
+        if (checkins != null) {
+            val subscriberListAdapter = SubscriberDetailAdapter(checkins).apply {  }
+
+            binding.recyclerCheckins.run {
+                setHasFixedSize(true)
+                adapter = subscriberListAdapter
+            }
+        }
     }
 
     private fun configureViewListener() {
