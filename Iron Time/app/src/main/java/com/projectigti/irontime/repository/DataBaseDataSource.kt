@@ -6,7 +6,7 @@ import java.util.Date
 
 class DataBaseDataSource(
     private val subscriberDAO: SubscriberDAO
-): SubscriberRepository {
+) : SubscriberRepository {
     override suspend fun insertSubscriber(name: String, email: String, phone: String): Long {
         val subscriber = SubscriberEntity(
             name = name,
@@ -17,13 +17,7 @@ class DataBaseDataSource(
     }
 
     override suspend fun updateSubscriber(id: Long, name: String, email: String, phone: String) {
-        val subscriber = SubscriberEntity(
-            id = id,
-            name = name,
-            email = email,
-            phone = phone
-        )
-        subscriberDAO.update(subscriber)
+        subscriberDAO.update(id, name, email, phone)
     }
 
     override suspend fun deleteSubscriber(id: Long) {

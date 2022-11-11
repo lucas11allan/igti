@@ -24,17 +24,22 @@ class SubscriberViewModel(
 
     fun addOrUpdateSubscriber(name: String, email: String, phone: String, id: Long = 0) {
         if (id > 0) {
-            updateSubscriber(name, email,phone, id)
+            updateSubscriber(name, email, phone, id)
         } else {
             insertSubscriber(name, email, phone)
         }
     }
 
-    private fun updateSubscriber(name: String, email: String, phone: String, id: Long) = viewModelScope.launch {
+    private fun updateSubscriber(
+        name: String,
+        email: String,
+        phone: String,
+        id: Long
+    ) = viewModelScope.launch {
         try {
             repository.updateSubscriber(id, name, email, phone)
             _subscriberStateEventData.value = SubscriberState.Updated
-            _messageEventData.value =  R.string.updated_successfully
+            _messageEventData.value = R.string.updated_successfully
 
         } catch (ex: Exception) {
             _messageEventData.value = R.string.error
@@ -42,18 +47,19 @@ class SubscriberViewModel(
         }
     }
 
-    private fun insertSubscriber(name: String, email: String, phone: String) = viewModelScope.launch {
-        try {
-            val id = repository.insertSubscriber(name, email, phone)
-            if (id > 0) {
-                _subscriberStateEventData.value = SubscriberState.Inserted
-                _messageEventData.value = R.string.inserted_succesfully
+    private fun insertSubscriber(name: String, email: String, phone: String) =
+        viewModelScope.launch {
+            try {
+                val id = repository.insertSubscriber(name, email, phone)
+                if (id > 0) {
+                    _subscriberStateEventData.value = SubscriberState.Inserted
+                    _messageEventData.value = R.string.inserted_succesfully
+                }
+            } catch (ex: Exception) {
+                _messageEventData.value = R.string.error
+                Log.e(TAG, ex.toString())
             }
-        } catch (ex: Exception) {
-            _messageEventData.value = R.string.error
-            Log.e(TAG, ex.toString())
         }
-    }
 
     fun deleteSubscriber(id: Long) = viewModelScope.launch {
         try {

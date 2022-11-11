@@ -60,6 +60,21 @@ class SubscriberDetailFragment : Fragment(R.layout.fragment_subscriber_detail) {
         super.onViewCreated(view, savedInstanceState)
         configureViewListener()
         observeViewModelEvents()
+        configureBinding()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        configureBinding()
+    }
+
+    private fun configureBinding() {
+        args.subscriber?.let { subscriber ->
+            binding.subscriberName.setText(subscriber.name)
+            binding.subscriberEmail.setText(subscriber.email)
+            binding.subscriberPhone .setText(subscriber.phone)
+            binding.subscriberClasses.setText(subscriber.classes.toString())
+        }
     }
 
     private fun observeViewModelEvents() {

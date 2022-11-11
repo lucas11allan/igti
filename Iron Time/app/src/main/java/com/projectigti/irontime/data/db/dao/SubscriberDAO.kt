@@ -12,8 +12,8 @@ interface SubscriberDAO {
     @Insert
     suspend fun insert(subscriber: SubscriberEntity): Long
 
-    @Update
-    suspend fun update(subscriber: SubscriberEntity)
+    @Query("UPDATE students SET name = :name,  email = :email, phone = :phone WHERE id = :id")
+    suspend fun update(id: Long, name: String, email: String, phone: String)
 
     @Query("DELETE FROM students WHERE id = :id")
     suspend fun delete(id: Long)

@@ -58,7 +58,7 @@ class SubscriberFragment : Fragment(R.layout.fragment_subscriber) {
             binding.buttonSubscriber.text = getString(R.string.button_update)
             binding.inputName.setText(subscriber.name.toString())
             binding.inputEmail.setText(subscriber.email.toString())
-            binding.inputPhone.setText(subscriber.email.toString())
+            binding.inputPhone.setText(subscriber.phone.toString())
 
             binding.buttonDeleteSubscriber.visibility = View.VISIBLE
         }
@@ -85,12 +85,20 @@ class SubscriberFragment : Fragment(R.layout.fragment_subscriber) {
             when (subscriberState) {
                 is SubscriberViewModel.SubscriberState.Inserted,
                 is SubscriberViewModel.SubscriberState.Updated,
-                is SubscriberViewModel.SubscriberState.Deleted,
                 is SubscriberViewModel.SubscriberState.Checkin -> {
                     clearFields()
                     hideKeyBoard()
                     requireView().requestFocus()
 
+                    findNavController().popBackStack()
+                }
+
+                is SubscriberViewModel.SubscriberState.Deleted -> {
+                    clearFields()
+                    hideKeyBoard()
+                    requireView().requestFocus()
+
+                    findNavController().popBackStack()
                     findNavController().popBackStack()
                 }
             }
