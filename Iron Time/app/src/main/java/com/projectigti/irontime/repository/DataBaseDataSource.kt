@@ -2,7 +2,7 @@ package com.projectigti.irontime.repository
 
 import com.projectigti.irontime.data.db.dao.SubscriberDAO
 import com.projectigti.irontime.data.db.model.SubscriberEntity
-import java.util.Date
+import java.util.*
 
 class DataBaseDataSource(
     private val subscriberDAO: SubscriberDAO
@@ -34,5 +34,9 @@ class DataBaseDataSource(
 
     override suspend fun getStudent(id: Long): SubscriberEntity {
         return subscriberDAO.getStudent(id)
+    }
+
+    override suspend fun insertClasses(id: Long, classes: Int) {
+        subscriberDAO.insertClasses(id, classes)
     }
 }

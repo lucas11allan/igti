@@ -1,7 +1,7 @@
 package com.projectigti.irontime.repository
 
 import com.projectigti.irontime.data.db.model.SubscriberEntity
-import java.util.Date
+import java.util.*
 
 interface SubscriberRepository {
 
@@ -16,4 +16,6 @@ interface SubscriberRepository {
     suspend fun getStudent(id: Long): SubscriberEntity
 
     suspend fun doCheckin(list: List<Date>, id: Long)
+
+    suspend fun insertClasses(id: Long, classes: Int)
 }

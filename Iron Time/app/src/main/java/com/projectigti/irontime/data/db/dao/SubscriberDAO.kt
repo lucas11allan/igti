@@ -3,9 +3,8 @@ package com.projectigti.irontime.data.db.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import androidx.room.Update
 import com.projectigti.irontime.data.db.model.SubscriberEntity
-import java.util.Date
+import java.util.*
 
 @Dao
 interface SubscriberDAO {
@@ -26,5 +25,8 @@ interface SubscriberDAO {
 
     @Query("UPDATE students SET checkins = :list, classes = classes - 1 WHERE id = :id")
     suspend fun doCheckin(list: List<Date>, id: Long)
+
+    @Query("UPDATE students SET classes = :classes + classes WHERE id = :id")
+    suspend fun insertClasses(id: Long, classes: Int)
 
 }

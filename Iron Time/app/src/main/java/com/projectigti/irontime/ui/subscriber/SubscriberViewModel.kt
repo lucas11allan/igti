@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.projectigti.irontime.R
 import com.projectigti.irontime.repository.SubscriberRepository
 import kotlinx.coroutines.launch
-import java.util.Date
 
 class SubscriberViewModel(
     private val repository: SubscriberRepository
@@ -82,6 +81,6 @@ class SubscriberViewModel(
     }
 
     companion object {
-        private val TAG = SubscriberViewModel::class.java.simpleName
+        internal val TAG = SubscriberViewModel::class.java.simpleName
     }
 }

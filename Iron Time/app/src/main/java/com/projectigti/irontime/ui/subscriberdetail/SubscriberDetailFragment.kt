@@ -2,7 +2,6 @@ package com.projectigti.irontime.ui.subscriberdetail
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -111,16 +110,14 @@ class SubscriberDetailFragment : Fragment(R.layout.fragment_subscriber_detail) {
             builder.apply {
                 var choice = 1
                 setTitle("Add Classes")
-                setNeutralButton("Cancel") { _, _ ->
-
+                setNeutralButton("Cancel") { _, _ -> }
+                setPositiveButton("Add") { _, _ ->
+                    args.subscriber?.let { subscriber ->
+                        viewModel.insertClasses(subscriber.id, choice)
+                    }
                 }
-                setPositiveButton("Add") { dialog, which ->
 
-
-                }
-                // Single-choice items (initialized with checked item)
                 setSingleChoiceItems(numberList, 1) { dialog, which ->
-                    Log.e("teste","teste Lucas ${which}")
                     choice = which
                 }
             }
