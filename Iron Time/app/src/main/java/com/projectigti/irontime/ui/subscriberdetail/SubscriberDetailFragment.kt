@@ -12,9 +12,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 import com.projectigti.irontime.R
 import com.projectigti.irontime.data.db.AppDatabase
 import com.projectigti.irontime.data.db.dao.SubscriberDAO
+import com.projectigti.irontime.data.db.model.SubscriberEntity
 import com.projectigti.irontime.databinding.FragmentSubscriberDetailBinding
 import com.projectigti.irontime.extension.navigateWithAnimations
 import com.projectigti.irontime.repository.DataBaseDataSource
@@ -58,20 +60,28 @@ class SubscriberDetailFragment : Fragment(R.layout.fragment_subscriber_detail) {
         super.onViewCreated(view, savedInstanceState)
         configureViewListener()
         observeViewModelEvents()
-        configureBinding()
+        observerEvents()
     }
 
     override fun onResume() {
         super.onResume()
-        configureBinding()
+        args.subscriber?.let { viewModel.getSubscriber(it.id) }
     }
 
-    private fun configureBinding() {
-        args.subscriber?.let { subscriber ->
-            binding.subscriberName.setText(subscriber.name)
-            binding.subscriberEmail.setText(subscriber.email)
-            binding.subscriberPhone.setText(subscriber.phone)
-            binding.subscriberClasses.setText(subscriber.classes.toString())
+    private fun configureBinding(subscriber: SubscriberEntity) {
+        binding.subscriberName.setText(subscriber.name)
+        binding.subscriberEmail.setText(subscriber.email)
+        binding.subscriberPhone.setText(subscriber.phone)
+        binding.subscriberClasses.setText(subscriber.classes.toString())
+    }
+
+    private fun observerEvents() {
+        viewModel.subscriberEvent.observe(viewLifecycleOwner) { subscriber ->
+            configureBinding(subscriber)
+        }
+
+        viewModel.messageEventData.observe(viewLifecycleOwner) { stringResId ->
+            Snackbar.make(requireView(), stringResId, Snackbar.LENGTH_LONG).show()
         }
     }
 
