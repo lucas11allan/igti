@@ -40,7 +40,6 @@ class SubscriberListViewModel(
             }
         } catch (ex: Exception) {
             _messageEventData.value = R.string.error
-            Log.e(SubscriberListViewModel.TAG, ex.toString())
         }
     }
 

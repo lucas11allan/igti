@@ -1,10 +1,12 @@
 package com.projectigti.irontime.ui.subscriberdetail
 
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
@@ -18,9 +20,6 @@ import com.projectigti.irontime.databinding.FragmentSubscriberDetailBinding
 import com.projectigti.irontime.extension.navigateWithAnimations
 import com.projectigti.irontime.repository.DataBaseDataSource
 import com.projectigti.irontime.repository.SubscriberRepository
-import com.projectigti.irontime.ui.subscriberlist.SubscriberListAdapter
-import com.projectigti.irontime.ui.subscriberlist.SubscriberListFragmentDirections
-import java.util.*
 
 class SubscriberDetailFragment : Fragment(R.layout.fragment_subscriber_detail) {
 
@@ -72,7 +71,7 @@ class SubscriberDetailFragment : Fragment(R.layout.fragment_subscriber_detail) {
         args.subscriber?.let { subscriber ->
             binding.subscriberName.setText(subscriber.name)
             binding.subscriberEmail.setText(subscriber.email)
-            binding.subscriberPhone .setText(subscriber.phone)
+            binding.subscriberPhone.setText(subscriber.phone)
             binding.subscriberClasses.setText(subscriber.classes.toString())
         }
     }
@@ -81,7 +80,7 @@ class SubscriberDetailFragment : Fragment(R.layout.fragment_subscriber_detail) {
         val checkins = args.subscriber?.checkins
 
         if (checkins != null) {
-            val subscriberListAdapter = SubscriberDetailAdapter(checkins).apply {  }
+            val subscriberListAdapter = SubscriberDetailAdapter(checkins).apply { }
 
             binding.recyclerCheckins.run {
                 setHasFixedSize(true)
@@ -97,6 +96,39 @@ class SubscriberDetailFragment : Fragment(R.layout.fragment_subscriber_detail) {
                     .actionSubscriberDetailFragmentToSubscriberFragment(args.subscriber)
             findNavController().navigateWithAnimations(directions)
         }
+
+        binding.buttonInsertClasses.setOnClickListener {
+            createDialogInsertClasses()
+        }
+    }
+
+    private fun createDialogInsertClasses() {
+        val numberList = Array(500) { i -> i.toString() }
+        val builder: AlertDialog.Builder? = activity?.let {
+
+            val builder = AlertDialog.Builder(it)
+
+            builder.apply {
+                var choice = 1
+                setTitle("Add Classes")
+                setNeutralButton("Cancel") { _, _ ->
+
+                }
+                setPositiveButton("Add") { dialog, which ->
+
+
+                }
+                // Single-choice items (initialized with checked item)
+                setSingleChoiceItems(numberList, 1) { dialog, which ->
+                    Log.e("teste","teste Lucas ${which}")
+                    choice = which
+                }
+            }
+        }
+
+        val dialog: AlertDialog? = builder?.create()
+
+        dialog?.show()
     }
 
 }

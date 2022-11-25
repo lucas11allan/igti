@@ -56,9 +56,9 @@ class SubscriberFragment : Fragment(R.layout.fragment_subscriber) {
 
         args.subscriber?.let { subscriber ->
             binding.buttonSubscriber.text = getString(R.string.button_update)
-            binding.inputName.setText(subscriber.name.toString())
-            binding.inputEmail.setText(subscriber.email.toString())
-            binding.inputPhone.setText(subscriber.phone.toString())
+            binding.inputName.setText(subscriber.name)
+            binding.inputEmail.setText(subscriber.email)
+            binding.inputPhone.setText(subscriber.phone)
 
             binding.buttonDeleteSubscriber.visibility = View.VISIBLE
         }

@@ -13,5 +13,7 @@ interface SubscriberRepository {
 
     suspend fun getAllSubscribers(): List<SubscriberEntity>
 
+    suspend fun getStudent(id: Long): SubscriberEntity
+
     suspend fun doCheckin(list: List<Date>, id: Long)
 }

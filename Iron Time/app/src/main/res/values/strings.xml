@@ -10,4 +10,5 @@
     <string name="updated_successfully">Subscriber updated successfully</string>
     <string name="delete_successfully">Subscriber deleted successfully</string>
     <string name="checkin_ok">Checkin successfully</string>
+    <string name="student_s_name">Student\'s Name</string>
 </resources>
