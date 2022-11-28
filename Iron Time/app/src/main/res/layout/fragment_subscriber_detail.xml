@@ -22,7 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="Name: " />
+            android:text="Name: "
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/subscriber_name"
@@ -44,7 +45,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="E-mail: " />
+            android:text="E-mail: "
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/subscriber_email"
@@ -66,7 +68,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="Phone: " />
+            android:text="Phone: "
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/subscriber_phone"
@@ -88,7 +91,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="Classes: " />
+            android:text="Classes: "
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/subscriber_classes"

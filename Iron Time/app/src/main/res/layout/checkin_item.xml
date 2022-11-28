@@ -4,18 +4,76 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
+    android:layout_marginStart="1dp"
     android:layout_marginTop="8dp"
-    android:layout_marginEnd="16dp"
+    android:layout_marginEnd="1dp"
     android:layout_marginBottom="8dp"
     app:cardCornerRadius="4dp">
 
-    <TextView
-        android:id="@+id/text_checkin_date"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        tools:text="11/08/1991" />
+        android:gravity="center_vertical|center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text_checkin_week"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:padding="8dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            tools:text="Monday" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/date_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Date: "
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/text_checkin_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="11/08/1991" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/hour_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Hour: "
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/text_checkin_hour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="11:30" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 
 
 </androidx.cardview.widget.CardView>
