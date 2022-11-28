@@ -22,10 +22,6 @@ class SubscriberDetailViewModel(
     val subscriberEvent: LiveData<SubscriberEntity>
         get() = _subscriberEvent
 
-    private val _subscriberDetailStateEventData = MutableLiveData<SubscriberDetailViewModel.SubscriberDetailState>()
-    val subscriberDetailStateEventData: LiveData<SubscriberDetailViewModel.SubscriberDetailState>
-        get() = _subscriberDetailStateEventData
-
     fun getSubscriber(id: Long) = viewModelScope.launch {
         _subscriberEvent.postValue(repository.getStudent(id))
     }
@@ -36,17 +32,13 @@ class SubscriberDetailViewModel(
     ) = viewModelScope.launch {
         try {
             repository.insertClasses(id, classes)
-            _messageEventData.value = R.string.updated_successfully
+            _messageEventData.value = R.string.classes_added
             getSubscriber(id)
 
         } catch (ex: Exception) {
             _messageEventData.value = R.string.error
-            Log.e(SubscriberViewModel.TAG, ex.toString())
+            Log.e(TAG, ex.toString())
         }
-    }
-
-    sealed class SubscriberDetailState {
-        object Update : SubscriberDetailState()
     }
 
     companion object {

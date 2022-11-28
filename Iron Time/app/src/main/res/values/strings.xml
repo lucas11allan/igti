@@ -1,14 +1,15 @@
 <resources>
     <string name="app_name">Iron Time</string>
     <string name="subscriber_email_hint">Email</string>
-    <string name="subscriber_name_hint">Subscriber\'s name</string>
+    <string name="subscriber_name_hint">Student\'s name</string>
     <string name="add_button">Add</string>
-    <string name="subscriber_screen">Subscriber</string>
-    <string name="inserted_succesfully">Subscribed inserted succesfuly</string>
+    <string name="subscriber_screen">Student</string>
+    <string name="inserted_succesfully">Student inserted succesfuly</string>
     <string name="error">An error has occurred</string>
-    <string name="button_update">Update Subscriber</string>
-    <string name="updated_successfully">Subscriber updated successfully</string>
-    <string name="delete_successfully">Subscriber deleted successfully</string>
+    <string name="button_update">Update Student</string>
+    <string name="updated_successfully">Student updated successfully</string>
+    <string name="delete_successfully">Student deleted successfully</string>
     <string name="checkin_ok">Checkin successfully</string>
     <string name="student_s_name">Student\'s Name</string>
+    <string name="classes_added">Classes added successfully</string>
 </resources>

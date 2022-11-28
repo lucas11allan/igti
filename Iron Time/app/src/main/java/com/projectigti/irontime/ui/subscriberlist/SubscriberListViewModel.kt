@@ -1,6 +1,5 @@
 package com.projectigti.irontime.ui.subscriberlist
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,7 +9,7 @@ import com.projectigti.irontime.data.db.model.SubscriberEntity
 import com.projectigti.irontime.repository.SubscriberRepository
 import com.projectigti.irontime.ui.subscriber.SubscriberViewModel
 import kotlinx.coroutines.launch
-import java.util.Date
+import java.util.*
 
 class SubscriberListViewModel(
     private val repository: SubscriberRepository
@@ -19,8 +18,8 @@ class SubscriberListViewModel(
     val allSubscribersEvent: LiveData<List<SubscriberEntity>>
         get() = _allSubscribersEvent
 
-    private val _subscriberListStateEventData = MutableLiveData<SubscriberListViewModel.SubscriberListState>()
-    val subscriberListStateEventData: LiveData<SubscriberListViewModel.SubscriberListState>
+    private val _subscriberListStateEventData = MutableLiveData<SubscriberListState>()
+    val subscriberListStateEventData: LiveData<SubscriberListState>
         get() = _subscriberListStateEventData
 
     private val _messageEventData = MutableLiveData<Int>()
