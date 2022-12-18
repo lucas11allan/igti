@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -16,11 +16,9 @@ import com.projectigti.irontime.R
 import com.projectigti.irontime.data.db.AppDatabase
 import com.projectigti.irontime.data.db.dao.SubscriberDAO
 import com.projectigti.irontime.databinding.FragmentSubscriberListBinding
-import com.projectigti.irontime.extension.hideKeyBoard
 import com.projectigti.irontime.extension.navigateWithAnimations
 import com.projectigti.irontime.repository.DataBaseDataSource
 import com.projectigti.irontime.repository.SubscriberRepository
-import com.projectigti.irontime.ui.subscriber.SubscriberViewModel
 import java.util.*
 
 class SubscriberListFragment : Fragment(R.layout.fragment_subscriber_list) {
@@ -114,6 +112,17 @@ class SubscriberListFragment : Fragment(R.layout.fragment_subscriber_list) {
                 .actionSubscriberListFragmentToSubscriberFragment()
             findNavController().navigateWithAnimations(directions)
         }
+
+        binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let { viewModel.filterSubscribers(it) }
+
+                return false
+            }
+        })
     }
 
 

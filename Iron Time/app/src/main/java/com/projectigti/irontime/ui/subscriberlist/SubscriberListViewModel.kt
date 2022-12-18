@@ -15,8 +15,9 @@ class SubscriberListViewModel(
     private val repository: SubscriberRepository
 ): ViewModel() {
     private val _allSubscribersEvent = MutableLiveData<List<SubscriberEntity>>()
+    private val _filterSubscribersEvent = MutableLiveData<List<SubscriberEntity>>()
     val allSubscribersEvent: LiveData<List<SubscriberEntity>>
-        get() = _allSubscribersEvent
+        get() = _filterSubscribersEvent
 
     private val _subscriberListStateEventData = MutableLiveData<SubscriberListState>()
     val subscriberListStateEventData: LiveData<SubscriberListState>
@@ -27,7 +28,18 @@ class SubscriberListViewModel(
         get() = _messageEventData
 
     fun getSubscribers() = viewModelScope.launch {
-        _allSubscribersEvent.postValue(repository.getAllSubscribers())
+        val subscribers = repository.getAllSubscribers()
+        _filterSubscribersEvent.postValue(subscribers)
+        _allSubscribersEvent.postValue(subscribers)
+    }
+
+    fun filterSubscribers(filter: String) {
+        val filter = _allSubscribersEvent.value?.filter {
+            it.name.contains(filter)
+        }
+        filter?.let {
+            _filterSubscribersEvent.postValue(it)
+        }
     }
 
     fun doCheckin(list: List<Date>, id: Long) = viewModelScope.launch {
